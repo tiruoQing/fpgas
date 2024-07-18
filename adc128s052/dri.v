@@ -30,7 +30,7 @@ module adc128s052_dri_8ch(
 	output	wire			cs		, // 低有效
 	
 	output	wire			done	, // 一个通道数据采集完成信号
-	output	wire		[ 2:0]	channel	, //
+	output	wire	[2:0]	channel	, //
 	output	reg		[15:0]	data	
 );
 	
@@ -224,5 +224,12 @@ module adc128s052_dri_8ch(
 		end
 	end
 	
+	
+	
 endmodule
+
+
+
+
+
 
