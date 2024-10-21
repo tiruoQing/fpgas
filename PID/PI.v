@@ -31,9 +31,6 @@ module pid(
 	localparam			CNT_MIN = 12'd416		;
 	localparam			DEFAULT_CNT = 12'd520	; // 默认为96K
 	
-	// parameter			kp	=	0.1				;
-	// parameter			ki	=	0.01			;
-	
 	
 	reg	signed	[12:0]	error					;
 	reg	signed	[12:0]	error_last				;
@@ -151,20 +148,20 @@ module pid(
 	end
 	
 
-// 对比1, 被限幅
-	always@(posedge clk or posedge rstp) begin
-		if(rstp)
-			cnt_freq <= DEFAULT_CNT;
-		else if(cnt_freq >= CNT_MAX)
-			cnt_freq <= CNT_MAX;
-		else if(cnt_freq <= CNT_MIN)
-			cnt_freq <= CNT_MIN;
-		else
-			cnt_freq <= cnt_freq_last + cnt_freq_deta;
-	end
+// 对比1, 被限幅, delete in use
+	// always@(posedge clk or posedge rstp) begin
+	// 	if(rstp)
+	// 		cnt_freq <= DEFAULT_CNT;
+	// 	else if(cnt_freq >= CNT_MAX)
+	// 		cnt_freq <= CNT_MAX;
+	// 	else if(cnt_freq <= CNT_MIN)
+	// 		cnt_freq <= CNT_MIN;
+	// 	else
+	// 		cnt_freq <= cnt_freq_last + cnt_freq_deta;
+	// end
 	
 
-// 对比2, 正常工作
+// 对比2, 正常工作1
 	always@(posedge clk or posedge rstp) begin
 		if(rstp)
 			cnt_freq <= DEFAULT_CNT;
@@ -176,8 +173,19 @@ module pid(
 			cnt_freq <= cnt_freq_last + cnt_freq_deta;
 	end
 	
+// 对比2, 正常工作1  delete in use
+	// always@(posedge clk or posedge rstp) begin
+	// 	if(rstp)
+	// 		cnt_freq <= DEFAULT_CNT;
+	// 	else if(cnt_freq > CNT_MAX)
+	// 		cnt_freq <= CNT_MAX;
+	// 	else if(cnt_freq < CNT_MIN)
+	// 		cnt_freq <= CNT_MIN;
+	// 	else
+	// 		cnt_freq <= cnt_freq_last + cnt_freq_deta;
+	// end
 
-
+// ila debug, delete in use
 	ila_1 ila_pid (
 		.clk(clk_50mhz			), // input wire clk
 
@@ -194,7 +202,7 @@ module pid(
 endmodule
 
 
-
+//delete in use
 
 	// reg		[11:0]	error_1					; // e(t-1)
 	// reg		[11:0]	error					; // e(t)
